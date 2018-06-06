@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo combobox</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./src/index.js"></script>
+</head>
+<body>
+
+
+<div class="c-goi-combobox">
+    <button id="combobox-age" class="c-goi-combobox__button"
+     aria-haspopup="list-age" aria-expanded="false">Selecciona la edad</button>
+
+    <div class="c-goi-combobox__listbox" role="presentation">
+        <ul tabindex="-1" role="listbox" id="list-age">
+            <li role="option">18 - 25</li>
+            <li role="option">26 - 39</li>
+            <li role="option">40 - 55</li>
+            <li role="option">55 - 99</li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+
+<!-- example of list de objetos -->
+
+<div class="c-listbox">
+    <div class="c-listbox__label" id="c-listbox__label_1">
+        Label de la lista
+    </div>
+
+    <ul class="c-listbox__content" tabindex="0" role="listbox" aria-label="c-listbox__label_1">
+        <li role="option">Option 010 </li>
+        <li role="option">Option 2121</li>
+        <li role="option">Option 511</li>
+        <li role="option">Option 5564</li>
+        <li role="option">Option 65464</li>
+        <li role="option">Option 445</li>
+        <li role="option">Option 4545</li>
+        <li role="option">Option 45</li>
+        <li role="option">Option 4</li>
+        <li role="option">Option 545</li>
+    </ul>
+</div>
+
+
+</body>
+</html>
