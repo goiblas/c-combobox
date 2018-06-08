@@ -7,11 +7,14 @@ export default class Combobox {
         this.$combobox = el;
         this.$parent = el.parentNode;
         this.nodeListbox = this.getListBox();
+        this.isVisible = false;
+        //console.log(el.textContent);
 
         if(!this.nodeListbox) {
             console.error('Lista de elementos no encontrado!');
         } else {
             this.listbox = new Listbox(this.nodeListbox);
+            this.selectDefaultChild();
         }
         
         //add listeners
@@ -26,7 +29,14 @@ export default class Combobox {
             destroy: this.destroy
         }
     }
+    selectDefaultChild() {
 
+        const childs = Array.from(this.nodeListbox.querySelectorAll('[role="option"]'));
+        const childSelected = childs.filter(child => child.textContent.trim() === this.$combobox.textContent.trim())[0];
+        if( childSelected) {
+            this.listbox.select(childSelected);
+        }
+    }
     selectHandler(ev) {
         
         const customEvent = new CustomEvent('change', {
@@ -36,8 +46,10 @@ export default class Combobox {
         this.hideListbox();
     }
 
-    blurHandler(){
-        this.hideListbox();
+    blurHandler(ev){
+        if (ev.relatedTarget !== this.$combobox) {
+            this.hideListbox();
+        }
     }
     changeSelectedHandler(ev) {
         this.$combobox.textContent = ev.detail;
@@ -68,19 +80,28 @@ export default class Combobox {
 
     clickHandler(ev) {
         ev.preventDefault();
-        this.showListbox();
+        if(this.isVisible) {
+            this.hideListbox();
+        } else {
+            this.showListbox();
+        }
     }
 
     hideListbox() {
         this.$combobox.setAttribute('aria-expanded', 'false');
         this.$parent.classList.remove('isOpen');
-        setTimeout( ()=> this.$combobox.focus());
+        setTimeout( () => {
+            this.$combobox.focus();
+            this.isVisible = false;
+        },100);
+        
     }
 
     showListbox() {
         this.$combobox.setAttribute('aria-expanded', 'true');
         this.$parent.classList.add('isOpen');
         this.nodeListbox.focus();
+        this.isVisible = true;
     }
     
     getListBox() {

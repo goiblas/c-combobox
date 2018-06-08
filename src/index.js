@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
     const comboboxAge = new Combobox(document.querySelector('#combobox-age'));
 
     const element = document.querySelector(".c-listbox__content");
-    const el = new Listbox(element);
+    new Listbox(element);
 
     element.addEventListener('changeSelected', (e)=> {
       console.log(e.detail);

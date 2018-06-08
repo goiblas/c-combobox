@@ -19,7 +19,8 @@ export default class ListBox {
 
         // return obj public
         return {
-            destroy: this.destroy
+            destroy: this.destroy,
+            select: this.selectChild.bind(this)
         }
     }
 
@@ -98,11 +99,14 @@ export default class ListBox {
 
     clickHandler(ev) {
         if( ev.target.getAttribute('role') === 'option') {
-             this.setFocus(ev.target);
-             this.onselect();
+            this.selectChild(ev.target)
         }
     }
 
+    selectChild(child) {
+        this.setFocus(child);
+        this.onselect();
+    }
     focusHandler() {
         if ( this.activedescendant ) return;
 

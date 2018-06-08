@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --watchAll --verbose",
     "dev": "parcel index.html --port 3200 && parcel watch index.html",
     "build": "parcel build index.html"
   },

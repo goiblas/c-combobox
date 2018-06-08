@@ -1,75 +1,18 @@
-
-.goi-select {
-  position: relative;
-}
-.goi-combobox {
-    padding:1rem .5rem;
-    display: inline-block;
-    position: relative;
-    line-height: 1.4;
-}
-.goi-combobox::after {
-    position: absolute;
-    right: 10px;
-    top: 2.5px;
-    width: 10px;
-    height: 10px;
-    background-color: red;
+/* UTILS
+**********************************/
+.u-label {
+  padding: .5em 0;
 }
 
-.goi-combobox[disabled], .goi-combobox[aria-disabled="true"] {
-      background-color: #ccc;
-      border: 1px solid #333;
-    }
 
-  .goi-listbox {
-    display: none;
-    margin: 0;
-    padding: 0;
-    overflow-y: auto;
-    background-color: #ddd;
-    width: 250px;
-    position: absolute;
-    list-style-type: none;
-    z-index: 2;
-    max-height: 200px;
-    top: 100%; /*the height of the combobox - 1px for the border collapse*/
-  }
-    .goi-listbox.goi-listbox-show {
-      display: block;
-    }
-
-    .goi-option {
-      padding: .3rem;
-      top: 28px;
-      text-overflow: ellipsis;
-      overflow-x: hidden;
-      white-space: nowrap;
-      cursor: default;
-    }
-      .goi-option:not([aria-disabled="true"]):hover,
-      .goi-option.goi-option-active {
-        background-color: #ffdd61;
-      }
-
-     .goi-option[aria-disabled="true"] {
-        color: #999;
-      }
-
-      .goi-option[aria-selected='true'],
-      .goi-option[aria-selected='true'].goi-option-active {
-        background-color: #4f81e2;
-      }
-    
-
-
-/* List option */
+/* LIST OPTIONS BASIC
+**********************************************/
 [role="listbox"] {
-	min-height: 10em;
   max-height: 14em;
   max-width: 40ch;
-	padding: 0px;
-	background: white;
+	padding: 0;
+  margin: 0;
+	background-color: #fff;
 	border: 1px solid #aaa;
 	overflow-y: auto;
 	position: relative;
@@ -77,45 +20,67 @@
 
 [role="option"] {
 	display: block;
-	padding: 0 1em;
+	padding: .4em 1em;
 	position: relative;
-	line-height: 1.8em;
+	line-height: 1.4;
 }
 
 [role="option"].focused {
-	background: #bde4ff;
+	background-color: #bde4ff;
+}
+[role="option"]:not(.focused):hover {
+	background-color: #def2ff;
 }
 
 
-
-/* combo box */
+/* COMBOBOX - goi-combobox
+***********************************/
 .c-goi-combobox {
   position: relative;
+  max-width: 430px;
+}
+.c-goi-combobox__listbox [role="listbox"] {
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+}
+.c-goi-combobox__listbox [role="listbox"]:focus {
+  outline: 0;
 }
 .c-goi-combobox__listbox {
   display: none;
   position: absolute;
-  top: 100%;
+  top: calc(100% - 1px);
+  width: 100%;
   left: 0;
-  width: 150px;
   z-index: 9999;
   pointer-events: none;
 }
+
 .isOpen .c-goi-combobox__listbox {
   display: block;
   pointer-events: auto;
 }
-
-
-
-
-/*
-[role="option"][aria-selected] {
-	padding-left: 1.5em;
+.c-goi-combobox__button {
+  box-sizing: border-box;
+  width: 100%;
+  padding: .6em 2em .6em .6em; 
+  border: 1px solid #ccc;
+  position: relative;
+  text-align: left;
+  background-color: #fff;
 }
 
-[role="option"][aria-selected="true"]::before {
-	content: 'âœ“';
-	position: absolute;
-	left: 0.5em;
-}*/
+.c-goi-combobox__button::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: calc(50% - .16em);
+  right: .9em;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: .4em .38em 0 .38em;
+  border-color: currentColor transparent transparent transparent;
+  opacity: .3;
+}
